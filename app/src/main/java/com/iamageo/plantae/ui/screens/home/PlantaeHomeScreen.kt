@@ -16,7 +16,7 @@ import com.iamageo.plantae.R
 import com.iamageo.plantae.domain.model.plantsLocalDataSource
 
 @Composable
-fun PlantHomeScreen(
+fun PlantaeHomeScreen(
     navController: NavController,
 ) {
     val scaffoldState = rememberScaffoldState()

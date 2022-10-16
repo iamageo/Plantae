@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.iamageo.plantae.ui.screens.home.PlantHomeScreen
+import com.iamageo.plantae.ui.screens.home.PlantaeHomeScreen
 import com.iamageo.plantae.ui.theme.PlantaeTheme
 
 class PlantMainActivity : ComponentActivity() {
@@ -31,7 +31,7 @@ class PlantMainActivity : ComponentActivity() {
                         startDestination = PlantaeScreens.PlantHomeScreen.route
                     ) {
                         composable(route = PlantaeScreens.PlantHomeScreen.route) {
-                            PlantHomeScreen(navController = navController)
+                            PlantaeHomeScreen(navController = navController)
                         }
                     }
                 }
