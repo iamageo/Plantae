@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Plantae</string>
+    <string name="home_add_plant_description">Add Plant Button</string>
+    <string name="home_title">Plantae</string>
 </resources>
