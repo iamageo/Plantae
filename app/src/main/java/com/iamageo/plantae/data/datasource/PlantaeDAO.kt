@@ -1,7 +1,7 @@
 package com.iamageo.plantae.data.datasource
 
 import androidx.room.*
-import com.iamageo.plantae.data.model.Plant
+import com.iamageo.plantae.domain.model.Plant
 import kotlinx.coroutines.flow.Flow
 
 @Dao

@@ -1,4 +1,4 @@
-package com.iamageo.plantae.data.model
+package com.iamageo.plantae.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
