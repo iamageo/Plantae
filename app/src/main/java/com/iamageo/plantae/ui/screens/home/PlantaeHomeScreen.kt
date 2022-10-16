@@ -1,5 +1,6 @@
 package com.iamageo.plantae.ui.screens.home
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -9,11 +10,14 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.iamageo.plantae.R
 import com.iamageo.plantae.domain.model.plantsLocalDataSource
+import com.iamageo.plantae.ui.theme.cottonBall
+import com.iamageo.plantae.ui.theme.green
 
 @Composable
 fun PlantaeHomeScreen(
@@ -25,11 +29,11 @@ fun PlantaeHomeScreen(
         floatingActionButton = {
             FloatingActionButton(
                 onClick = {},
-                backgroundColor = MaterialTheme.colors.primary
+                backgroundColor = Color.White
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
-                    tint = MaterialTheme.colors.secondary,
+                    tint = green,
                     contentDescription = stringResource(id = R.string.home_add_plant_description)
                 )
             }
@@ -43,7 +47,7 @@ fun PlantaeHomeScreen(
                 Text(
                     text = stringResource(id = R.string.home_title),
                     style = MaterialTheme.typography.h4,
-                    modifier = Modifier.padding(start = 8.dp)
+                    modifier = Modifier.fillMaxWidth().background(color = cottonBall).padding(start = 8.dp)
                 )
             }
         },
@@ -51,6 +55,7 @@ fun PlantaeHomeScreen(
     ) {
         Column(
             modifier = Modifier
+                .background(color = cottonBall)
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
@@ -60,7 +65,9 @@ fun PlantaeHomeScreen(
                 items(plantsLocalDataSource) { plant ->
                     PlantItem(
                         plant = plant,
-                        modifier = Modifier.padding(bottom = 8.dp).fillMaxWidth()
+                        modifier = Modifier
+                            .padding(bottom = 8.dp)
+                            .fillMaxWidth()
                     )
                 }
             }
