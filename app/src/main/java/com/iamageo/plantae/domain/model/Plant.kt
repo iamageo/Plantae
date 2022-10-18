@@ -1,5 +1,6 @@
 package com.iamageo.plantae.domain.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
@@ -9,6 +10,7 @@ data class Plant(
     val schedule: String,
     val type: String,
     val description: String,
+    var image: ByteArray,
     @PrimaryKey val id: Int? = null
 )
 
