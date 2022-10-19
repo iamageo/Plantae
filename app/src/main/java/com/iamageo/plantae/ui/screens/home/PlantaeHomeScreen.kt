@@ -18,6 +18,7 @@ import com.iamageo.plantae.R
 import com.iamageo.plantae.domain.model.plantsLocalDataSource
 import com.iamageo.plantae.ui.theme.cottonBall
 import com.iamageo.plantae.ui.theme.green
+import com.iamageo.plantae.ui.theme.plantaePrimary
 
 @Composable
 fun PlantaeHomeScreen(
@@ -41,13 +42,13 @@ fun PlantaeHomeScreen(
         topBar = {
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
                     text = stringResource(id = R.string.home_title),
                     style = MaterialTheme.typography.h4,
-                    modifier = Modifier.fillMaxWidth().background(color = cottonBall).padding(start = 8.dp)
+                    modifier = Modifier.fillMaxWidth().background(color = plantaePrimary).padding(start = 8.dp, top = 4.dp, bottom = 4.dp)
                 )
             }
         },
