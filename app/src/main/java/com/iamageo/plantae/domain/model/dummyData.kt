@@ -1,6 +1,5 @@
 package com.iamageo.plantae.domain.model
 
-import com.iamageo.plantae.R
 
 val plantsLocalDataSource = listOf(
   Plant(
