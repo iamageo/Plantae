@@ -11,15 +11,16 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides
     @Singleton
-    fun providePlantaeDatabase(app: Application): RoomDatabase {
+    fun providePlantaeDatabase(app: Application): PlantDatabase {
         return Room.databaseBuilder(
             app,
             PlantDatabase::class.java,
