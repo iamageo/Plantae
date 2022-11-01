@@ -1,13 +1,13 @@
 package com.iamageo.plantae.domain.model
 
-val plantsLocalDataSource = emptyList<Plant>()
+import com.iamageo.plantae.R
 
-/*
+val plantsLocalDataSource = listOf(
   Plant(
       name = "Lithop",
       schedule = "monthly",
       type = "Succulent",
-      description = "Stone mimicking succulent"
+      description = "Stone mimicking succulent",
   ),
   Plant(
       name = "Carrot",
@@ -39,5 +39,4 @@ val plantsLocalDataSource = emptyList<Plant>()
       type = "Fruit",
       description = "Delicious 'multiple fruit'"
   )
-
-   */
+)
