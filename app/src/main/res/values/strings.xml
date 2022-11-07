@@ -6,4 +6,7 @@
     <!-- notification -->
     <string name="channel_name">Plantae channel</string>
     <string name="channel_description">Plantae reminder</string>
+
+    <!-- add plant screen -->
+    <string name="add_plant_fab">App plant</string>
 </resources>

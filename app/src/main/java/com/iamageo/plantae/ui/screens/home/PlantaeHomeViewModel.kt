@@ -7,7 +7,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
-class PlantaeViewModel @Inject constructor(
+class PlantaeHomeViewModel @Inject constructor(
     private val plantaeUseCases: PlantUseCases
 ) : ViewModel() {
 

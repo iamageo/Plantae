@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.iamageo.plantae.PlantaeScreens
 import com.iamageo.plantae.R
 import com.iamageo.plantae.domain.model.plantsLocalDataSource
 import com.iamageo.plantae.ui.theme.cottonBall
@@ -24,14 +25,16 @@ import com.iamageo.plantae.ui.theme.plantaePrimary
 @Composable
 fun PlantaeHomeScreen(
     navController: NavController,
-    viewModel: PlantaeViewModel = hiltViewModel()
+    viewModel: PlantaeHomeViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
 
     Scaffold(
         floatingActionButton = {
             FloatingActionButton(
-                onClick = {},
+                onClick = {
+                    navController.navigate(route = PlantaeScreens.PlantAddScreen.route)
+                },
                 backgroundColor = Color.White
             ) {
                 Icon(
@@ -49,8 +52,11 @@ fun PlantaeHomeScreen(
             ) {
                 Text(
                     text = stringResource(id = R.string.home_title),
-                    style = MaterialTheme.typography.h4,
-                    modifier = Modifier.fillMaxWidth().background(color = plantaePrimary).padding(start = 8.dp, top = 4.dp, bottom = 4.dp)
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(color = plantaePrimary)
+                        .padding(start = 8.dp, top = 4.dp, bottom = 4.dp)
                 )
             }
         },

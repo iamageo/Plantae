@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.iamageo.plantae.ui.screens.add.PlantaeAddScreen
 import com.iamageo.plantae.ui.screens.home.PlantaeHomeScreen
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -24,6 +25,9 @@ class PlantMainActivity : ComponentActivity() {
             ) {
                 composable(route = PlantaeScreens.PlantHomeScreen.route) {
                     PlantaeHomeScreen(navController = navController)
+                }
+                composable(route = PlantaeScreens.PlantAddScreen.route) {
+                    PlantaeAddScreen(navController = navController)
                 }
             }
 
