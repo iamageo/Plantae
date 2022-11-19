@@ -11,11 +11,21 @@ class PlantaeAddViewModel : ViewModel() {
     )
     val plantName: State<PlantEditTextState> = _plantName
 
+    private val _plantSpecie = mutableStateOf(
+        PlantEditTextState()
+    )
+    val plantSpecie: State<PlantEditTextState> = _plantSpecie
+
     fun onEvent(event: PlantaeAddEvents) {
         when (event) {
             is PlantaeAddEvents.EnteredPlantName -> {
                 _plantName.value = plantName.value.copy(
                     text = event.plantName
+                )
+            }
+            is PlantaeAddEvents.EnteredPlantSpecie -> {
+                _plantSpecie.value = plantSpecie.value.copy(
+                    text = event.plantSpecie
                 )
             }
         }

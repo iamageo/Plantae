@@ -26,6 +26,7 @@ fun PlantaeAddScreen(
 ) {
 
     val plantNameState = plantaeAddViewModel.plantName.value
+    val plantSpecieState = plantaeAddViewModel.plantSpecie.value
 
     val scaffoldState = rememberScaffoldState()
     Scaffold() {
@@ -77,14 +78,12 @@ fun PlantaeAddScreen(
                 PlantaeEditText(
                     modifier = Modifier.fillMaxWidth(),
                     label = "Plant specie",
-                    text = "",
+                    text = plantSpecieState.text,
                     backgroundColor = Color.Green,
-                    onValueChange = {
-
+                    onValueChange = { specie ->
+                        plantaeAddViewModel.onEvent(PlantaeAddEvents.EnteredPlantSpecie(plantSpecie = specie))
                     },
-                    onFocusChange = {
-
-                    },
+                    onFocusChange = { focus -> },
                     singleLine = true
                 )
             }
