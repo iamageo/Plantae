@@ -8,7 +8,7 @@ class GetAllPlants(
     private val plantRepository: PlantRepository
 ) {
 
-    suspend fun invoke() : Flow<List<Plant>> {
+    operator fun invoke() : Flow<List<Plant>> {
         return plantRepository.getAllPlants()
     }
 

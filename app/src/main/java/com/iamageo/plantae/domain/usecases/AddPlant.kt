@@ -8,7 +8,7 @@ class AddPlant(
     private val plantRepository: PlantRepository
 ) {
     @Throws(InvalidPlantException::class)
-    suspend fun invoke(plant: Plant) {
+    suspend operator fun invoke(plant: Plant) {
         if (plant.name.isEmpty()) {
             throw InvalidPlantException("The name of plant cant be empty")
         }
