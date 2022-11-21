@@ -36,26 +36,4 @@ class PlantaeHomeViewModel @Inject constructor(
             .launchIn(viewModelScope)
     }
 
-
-    /*
-    //TODO: move this code from PlantaeAddViewModel
-    private val workManager = WorkManager.getInstance(application)
-
-    internal fun scheduleReminder(
-        duration: Long,
-        unit: TimeUnit,
-        plantName: String
-    ) {
-        val data = Data.Builder().putString(PlantaeWorkManager.nameKey, plantName).build()
-
-        val reminderWorkerRequest = OneTimeWorkRequestBuilder<PlantaeWorkManager>()
-            .setInputData(data)
-            .setInitialDelay(duration, unit)
-            .build()
-
-        workManager.enqueue(reminderWorkerRequest)
-    }
-
-     */
-
 }

@@ -7,15 +7,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.work.Data
+import androidx.work.OneTimeWorkRequestBuilder
+import androidx.work.WorkManager
 import com.iamageo.plantae.PlantaeStates
 import com.iamageo.plantae.PlantaeUiEvents
 import com.iamageo.plantae.domain.model.InvalidPlantException
 import com.iamageo.plantae.domain.model.Plant
 import com.iamageo.plantae.domain.usecases.PlantUseCases
+import com.iamageo.plantae.worker.PlantaeWorkManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -42,6 +47,8 @@ class PlantaeAddViewModel @Inject constructor(
     private val _eventFlow = MutableSharedFlow<PlantaeUiEvents>()
     val eventFlow = _eventFlow.asSharedFlow()
 
+    private val workManager = WorkManager.getInstance(application)
+
     fun onEvent(event: PlantaeAddEvents) {
         when (event) {
             is PlantaeAddEvents.EnteredPlantName -> {
@@ -66,6 +73,7 @@ class PlantaeAddViewModel @Inject constructor(
                                 description =  "description teste",
                             )
                         )
+                        scheduleReminder(5, TimeUnit.SECONDS, "Orquidea")
                         _eventFlow.emit(PlantaeUiEvents.SaveNewPlant)
                     } catch (e: InvalidPlantException) {
                         Log.i("Plantae LOG -> ", "onEvent: " + e.message)
@@ -73,6 +81,21 @@ class PlantaeAddViewModel @Inject constructor(
                 }
             }
         }
+    }
+
+    internal fun scheduleReminder(
+        duration: Long,
+        unit: TimeUnit,
+        plantName: String
+    ) {
+        val data = Data.Builder().putString(PlantaeWorkManager.nameKey, plantName).build()
+
+        val reminderWorkerRequest = OneTimeWorkRequestBuilder<PlantaeWorkManager>()
+            .setInputData(data)
+            .setInitialDelay(duration, unit)
+            .build()
+
+        workManager.enqueue(reminderWorkerRequest)
     }
 
 }
