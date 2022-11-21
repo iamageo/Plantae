@@ -5,4 +5,5 @@ import androidx.compose.ui.focus.FocusState
 sealed class PlantaeAddEvents {
     data class EnteredPlantName(val plantName: String) : PlantaeAddEvents()
     data class EnteredPlantSpecie(val plantSpecie: String) : PlantaeAddEvents()
+    object SaveNewPlant:  PlantaeAddEvents()
 }

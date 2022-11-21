@@ -5,7 +5,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Done
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -13,11 +14,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.iamageo.plantae.PlantaeUiEvents
 import com.iamageo.plantae.R
 import com.iamageo.plantae.ui.screens.add.components.PlantaeEditText
-import com.iamageo.plantae.ui.screens.home.PlantaeHomeViewModel
 import com.iamageo.plantae.ui.theme.green
 import com.iamageo.plantae.ui.theme.plantaePrimary
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun PlantaeAddScreen(
@@ -29,12 +31,26 @@ fun PlantaeAddScreen(
     val plantSpecieState = plantaeAddViewModel.plantSpecie.value
 
     val scaffoldState = rememberScaffoldState()
+
+    LaunchedEffect(key1 = true) {
+        plantaeAddViewModel.eventFlow.collectLatest { event ->
+            when (event) {
+                is PlantaeUiEvents.ShowSnackBar -> {
+
+                }
+                is PlantaeUiEvents.SaveNewPlant -> {
+                    navController.navigateUp()
+                }
+            }
+        }
+    }
+
     Scaffold() {
         Scaffold(
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-
+                        plantaeAddViewModel.onEvent(PlantaeAddEvents.SaveNewPlant)
                     },
                     backgroundColor = Color.White
                 ) {
