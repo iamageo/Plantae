@@ -28,6 +28,7 @@ fun PlantaeHomeScreen(
     viewModel: PlantaeHomeViewModel = hiltViewModel()
 ) {
     val scaffoldState = rememberScaffoldState()
+    val state = viewModel.state.value
 
     Scaffold(
         floatingActionButton = {
@@ -71,7 +72,7 @@ fun PlantaeHomeScreen(
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(plantsLocalDataSource) { plant ->
+                items(state.plants) { plant ->
                     PlantItem(
                         plant = plant,
                         modifier = Modifier
