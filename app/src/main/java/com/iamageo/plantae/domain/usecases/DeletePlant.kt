@@ -7,7 +7,7 @@ class DeletePlant(
     private val plantRepository: PlantRepository
 ) {
 
-    suspend fun invoke(plant: Plant) {
+    suspend operator fun invoke(plant: Plant) {
         plantRepository.deletePlant(plant)
     }
 

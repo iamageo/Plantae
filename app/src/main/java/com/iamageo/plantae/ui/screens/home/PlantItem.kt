@@ -1,17 +1,14 @@
 package com.iamageo.plantae.ui.screens.home
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -27,12 +24,13 @@ import com.iamageo.plantae.ui.theme.veiledSpotlight
 @Composable
 fun PlantItem(
     plant: Plant,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onDeleteClick: () -> Unit
 ) {
 
     Spacer(modifier = Modifier.height(44.dp))
     Box(
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .wrapContentHeight()
     ) {
@@ -101,6 +99,16 @@ fun PlantItem(
                                 text = "Favorite",
                                 color = Color.White,
                                 fontSize = 12.sp
+                            )
+                        }
+                        Spacer(modifier = Modifier.width(8.dp))
+                        IconButton(onClick = {
+                            onDeleteClick
+                        }) {
+                            Icon(
+                                imageVector = Icons.Default.Delete,
+                                tint = Color.Black,
+                                contentDescription = ""
                             )
                         }
                     }

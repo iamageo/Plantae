@@ -15,6 +15,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.iamageo.plantae.PlantaeGeneralEvents
 import com.iamageo.plantae.PlantaeScreens
 import com.iamageo.plantae.R
 import com.iamageo.plantae.domain.model.plantsLocalDataSource
@@ -80,7 +81,10 @@ fun PlantaeHomeScreen(
                         plant = plant,
                         modifier = Modifier
                             .padding(bottom = 8.dp)
-                            .fillMaxWidth()
+                            .fillMaxWidth(),
+                        onDeleteClick = {
+                            viewModel.onEvent(PlantaeGeneralEvents.DeletePlant(plant))
+                        }
                     )
                 }
             }
