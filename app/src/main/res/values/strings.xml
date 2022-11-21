@@ -7,6 +7,10 @@
     <string name="channel_name">Plantae channel</string>
     <string name="channel_description">Plantae reminder</string>
 
+    <!-- home plant screen -->
+    <string name="home_plant_welcome">Welcome to Plantae</string>
+    <string name="home_plant_subtitle">Let\'s get started by adding your first plant!</string>
+
     <!-- add plant screen -->
     <string name="add_plant_fab">App plant</string>
 </resources>

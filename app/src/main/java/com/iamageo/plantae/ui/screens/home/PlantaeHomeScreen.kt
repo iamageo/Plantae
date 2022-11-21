@@ -45,30 +45,33 @@ fun PlantaeHomeScreen(
                 )
             }
         },
-        topBar = {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = stringResource(id = R.string.home_title),
-                    style = MaterialTheme.typography.h5,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .background(color = plantaePrimary)
-                        .padding(start = 8.dp, top = 4.dp, bottom = 4.dp)
-                )
-            }
-        },
+        topBar = {},
         scaffoldState = scaffoldState
     ) {
+
         Column(
             modifier = Modifier
                 .background(color = cottonBall)
                 .fillMaxSize()
                 .padding(16.dp)
         ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    text = stringResource(id = R.string.home_plant_welcome),
+                    style = MaterialTheme.typography.h5,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp, bottom = 8.dp)
+                )
+                Text(
+                    text = stringResource(id = R.string.home_plant_subtitle),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = 8.dp, bottom = 8.dp)
+                )
+            }
             LazyColumn(
                 modifier = Modifier.fillMaxSize()
             ) {
