@@ -8,6 +8,7 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -22,6 +23,7 @@ import com.iamageo.plantae.domain.model.plantsLocalDataSource
 import com.iamageo.plantae.ui.theme.cottonBall
 import com.iamageo.plantae.ui.theme.green
 import com.iamageo.plantae.ui.theme.plantaePrimary
+import kotlinx.coroutines.launch
 
 @Composable
 fun PlantaeHomeScreen(
@@ -30,6 +32,7 @@ fun PlantaeHomeScreen(
 ) {
     val scaffoldState = rememberScaffoldState()
     val state = viewModel.state.value
+    val scope = rememberCoroutineScope()
 
     Scaffold(
         floatingActionButton = {
@@ -84,6 +87,15 @@ fun PlantaeHomeScreen(
                             .fillMaxWidth(),
                         onDeleteClick = {
                             viewModel.onEvent(PlantaeGeneralEvents.DeletePlant(plant))
+                            scope.launch {
+                                val result = scaffoldState.snackbarHostState.showSnackbar(
+                                    message = "A planta ${plant.name} foi deletada",
+                                    actionLabel = "Desfazer?"
+                                )
+                                if (result == SnackbarResult.ActionPerformed) {
+                                    viewModel.onEvent(PlantaeGeneralEvents.RestoreDeletedPlant)
+                                }
+                            }
                         }
                     )
                 }
