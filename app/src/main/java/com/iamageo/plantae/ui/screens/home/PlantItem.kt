@@ -6,6 +6,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Delete
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -81,30 +82,19 @@ fun PlantItem(
                         modifier = Modifier
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Center,
+                        horizontalArrangement = Arrangement.End,
 
                         ) {
                         Spacer(modifier = Modifier.width(8.dp))
-                        Button(
-                            onClick = { /*TODO*/ },
-                            elevation = null,
-                            modifier = Modifier
-                                .weight(0.5f),
-                            shape = RoundedCornerShape(8.dp),
-                            colors = ButtonDefaults.buttonColors(
-                                backgroundColor = green
-                            ),
-                        ) {
-                            Text(
-                                text = "Favorite",
-                                color = Color.White,
-                                fontSize = 12.sp
+                        IconButton(onClick = {}) {
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                tint = green,
+                                contentDescription = ""
                             )
                         }
                         Spacer(modifier = Modifier.width(8.dp))
-                        IconButton(onClick = {
-                            onDeleteClick
-                        }) {
+                        IconButton(onClick = onDeleteClick) {
                             Icon(
                                 imageVector = Icons.Default.Delete,
                                 tint = Color.Black,
