@@ -6,10 +6,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.work.Data
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
+import androidx.work.*
 import com.iamageo.plantae.PlantaeStates
 import com.iamageo.plantae.PlantaeUiEvents
 import com.iamageo.plantae.domain.model.InvalidPlantException
@@ -67,13 +64,13 @@ class PlantaeAddViewModel @Inject constructor(
                         plantaeUseCases.addPlant(
                             Plant(
                                 id = currentPlantId,
-                                name =  plantName.value.text,
-                                schedule =  "teste",
-                                type =  plantSpecie.value.text,
-                                description =  "description teste",
+                                name = plantName.value.text,
+                                schedule = "teste",
+                                type = plantSpecie.value.text,
+                                description = "description teste",
                             )
                         )
-                        scheduleReminder(5, TimeUnit.SECONDS, "Orquidea")
+                        scheduleReminder(10, TimeUnit.SECONDS, "Orquidea")
                         _eventFlow.emit(PlantaeUiEvents.SaveNewPlant)
                     } catch (e: InvalidPlantException) {
                         Log.i("Plantae LOG -> ", "onEvent: " + e.message)
@@ -90,12 +87,17 @@ class PlantaeAddViewModel @Inject constructor(
     ) {
         val data = Data.Builder().putString(PlantaeWorkManager.nameKey, plantName).build()
 
-        val reminderWorkerRequest = OneTimeWorkRequestBuilder<PlantaeWorkManager>()
+        val request: PeriodicWorkRequest = PeriodicWorkRequest.Builder(PlantaeWorkManager::class.java, 15, TimeUnit.MINUTES, 1, TimeUnit.MINUTES)
             .setInputData(data)
             .setInitialDelay(duration, unit)
+            .setBackoffCriteria(BackoffPolicy.LINEAR, 1, TimeUnit.HOURS)
             .build()
 
-        workManager.enqueue(reminderWorkerRequest)
+        workManager.enqueueUniquePeriodicWork(
+            "TAG_WORK_NAME",
+            ExistingPeriodicWorkPolicy.KEEP,
+            request
+        )
     }
 
 }

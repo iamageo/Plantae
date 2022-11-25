@@ -35,14 +35,12 @@ class PlantaeHomeViewModel @Inject constructor(
     fun onEvent(event: PlantaeGeneralEvents) {
         when (event) {
             is PlantaeGeneralEvents.DeletePlant -> {
-                Log.i("TAG Plantae ->", "onEvent: delete plant " + event.plant)
                 viewModelScope.launch {
                     plantUseCases.deletePlant(event.plant)
                     recentlyDeletedPlant = event.plant
                 }
             }
             is PlantaeGeneralEvents.RestoreDeletedPlant -> {
-                Log.i("TAG Plantae ->", "onEvent: restore plant")
                 viewModelScope.launch {
                     plantUseCases.addPlant(recentlyDeletedPlant ?: return@launch)
                     recentlyDeletedPlant = null
