@@ -41,6 +41,11 @@ class PlantaeAddViewModel @Inject constructor(
     )
     val plantSpecie: State<PlantEditTextState> = _plantSpecie
 
+    private val _plantSchedule = mutableStateOf(
+        PlantEditTextState()
+    )
+    val plantSchedule: State<PlantEditTextState> = _plantSchedule
+
     private val _eventFlow = MutableSharedFlow<PlantaeUiEvents>()
     val eventFlow = _eventFlow.asSharedFlow()
 
@@ -56,6 +61,11 @@ class PlantaeAddViewModel @Inject constructor(
             is PlantaeAddEvents.EnteredPlantSpecie -> {
                 _plantSpecie.value = plantSpecie.value.copy(
                     text = event.plantSpecie
+                )
+            }
+            is PlantaeAddEvents.EnteredPlantSchedule -> {
+                _plantSchedule.value = plantSchedule.value.copy(
+                    number = event.plantSchedule
                 )
             }
             is PlantaeAddEvents.SaveNewPlant -> {
