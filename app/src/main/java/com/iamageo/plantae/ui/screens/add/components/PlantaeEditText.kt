@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Close
@@ -12,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 
@@ -23,6 +25,7 @@ fun PlantaeEditText(
     backgroundColor: Color,
     onValueChange: (String) -> Unit,
     singleLine: Boolean = true,
+    keyboardType: KeyboardType,
     onFocusChange: (FocusState) -> Unit
 ) {
     Column(modifier = Modifier.padding(8.dp)) {
@@ -46,6 +49,9 @@ fun PlantaeEditText(
                 disabledLabelColor = lightBlue,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent
+            ),
+            keyboardOptions = KeyboardOptions(
+                keyboardType = keyboardType
             ),
             onValueChange = onValueChange,
             shape = RoundedCornerShape(8.dp),
