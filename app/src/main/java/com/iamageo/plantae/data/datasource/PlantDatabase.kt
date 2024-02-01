@@ -6,7 +6,8 @@ import com.iamageo.plantae.domain.model.Plant
 
 @Database(
     entities = [Plant::class],
-    version = 1
+    version = 1,
+    exportSchema = false
 )
 abstract class PlantDatabase : RoomDatabase() {
 
