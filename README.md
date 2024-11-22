@@ -31,10 +31,6 @@
 - [Dagger Hilt](https://dagger.dev/hilt/) - for dependency injection
 - [Jetpack Compose](https://developer.android.com/jetpack/compose?hl=pt-br)
 
-## MAD Score
-![summary](https://user-images.githubusercontent.com/24237865/102366914-84f6b000-3ffc-11eb-8d49-b20694239782.png)
-![kotlin](https://user-images.githubusercontent.com/24237865/102366932-8a53fa80-3ffc-11eb-8131-fd6745a6f079.png)
-
 ## License
 ```
     Copyright 2023 Geovani Amaral
