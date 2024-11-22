@@ -47,7 +47,7 @@ fun PlantaeAddScreen(
         }
     }
 
-    Scaffold() {
+    Scaffold() { padding ->
         Scaffold(
             floatingActionButton = {
                 FloatingActionButton(
@@ -80,8 +80,8 @@ fun PlantaeAddScreen(
                 }
             },
             scaffoldState = scaffoldState
-        ) {
-            Column {
+        ) { padding ->
+            Column(modifier = Modifier.padding(padding)) {
                 PlantaeEditText(
                     modifier = Modifier.fillMaxWidth(),
                     label = "Plant name",
@@ -90,7 +90,7 @@ fun PlantaeAddScreen(
                     onValueChange = { name ->
                         plantaeAddViewModel.onEvent(PlantaeAddEvents.EnteredPlantName(plantName = name))
                     },
-                    onFocusChange = { focus -> },
+                    onFocusChange = { _ -> },
                     singleLine = true,
                     keyboardType = KeyboardType.Text
                 )
@@ -102,7 +102,7 @@ fun PlantaeAddScreen(
                     onValueChange = { specie ->
                         plantaeAddViewModel.onEvent(PlantaeAddEvents.EnteredPlantSpecie(plantSpecie = specie))
                     },
-                    onFocusChange = { focus -> },
+                    onFocusChange = { _ -> },
                     singleLine = true,
                     keyboardType = KeyboardType.Text
                 )
@@ -114,7 +114,7 @@ fun PlantaeAddScreen(
                     onValueChange = { schedule ->
                         plantaeAddViewModel.onEvent(PlantaeAddEvents.EnteredPlantSchedule(plantSchedule = schedule.toInt()))
                     },
-                    onFocusChange = { focus -> },
+                    onFocusChange = { _ -> },
                     singleLine = true,
                     keyboardType = KeyboardType.Number
                 )
